@@ -1,0 +1,42 @@
+{
+  "name": "micromouse-simulator",
+  "version": "0.0.1",
+  "description": "A micromouse simulator written in Svelte",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv docs --no-clear",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewnoel/micromouse-simulator.git"
+  },
+  "keywords": [
+    "micromouse",
+    "svelte"
+  ],
+  "author": "Matthew Noel",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/matthewnoel/micromouse-simulator/issues"
+  },
+  "homepage": "https://github.com/matthewnoel/micromouse-simulator#readme",
+  "dependencies": {
+    "sirv-cli": "^2.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-polyfill-node": "^0.12.0",
+    "rollup-plugin-string": "^3.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.0.0"
+  }
+}
