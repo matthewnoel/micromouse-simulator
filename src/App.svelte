@@ -1,7 +1,7 @@
-<p>Hello <span>World</span></p>
+<script>
+    import Maze from "./components/Maze.svelte";
+    import Editor from "./components/Editor.svelte";
+</script>
 
-<style>
-    span {
-        color: red;
-    }
-</style>
+<Maze />
+<Editor />
