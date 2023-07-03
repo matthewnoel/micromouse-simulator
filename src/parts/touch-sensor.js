@@ -4,5 +4,6 @@ export const isTouching = () => {
 
 export const TouchSensor = {
     name: 'Touch Sensor',
-    methods: {}
+    methods: {},
+    locations: ['front', 'right', 'back', 'left']
 };

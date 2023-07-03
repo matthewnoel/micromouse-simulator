@@ -1,22 +1,45 @@
 <script>
-import { length, width, start, end } from '../maze';
+import { maze, doesSideMatchWall } from '../maze';
 import { x, y } from '../mouse';
 
-$: mazeDetails = JSON.stringify({length: $length, width: $width, start: $start, end: $end});
+$: mazeDetails = JSON.stringify({length: $maze.length, width: $maze.width, start: $maze.start, end: $maze.end, walls: $maze.walls});
 $: mouseDetails = JSON.stringify({x: $x, y: $y});
+
+const getWallBorderStyle = (x, y) => {
+    let style = '';
+    const keys = [];
+    for (const wall of $maze.walls) {
+        if (doesSideMatchWall(x, y, x + 1, y, wall)) {
+            keys.push('border-top');
+        }
+        if (doesSideMatchWall(x + 1, y, x + 1, y + 1, wall)) {
+            keys.push('border-right');
+        }
+        if (doesSideMatchWall(x, y + 1, x + 1, y + 1, wall)) {
+            keys.push('border-bottom');
+        }
+        if (doesSideMatchWall(x, y, x, y + 1, wall)) {
+            keys.push('border-left');
+        }
+    }
+    if (keys.length > 0) {
+        style = keys.map(p => `${p}: 1px solid black;`).join('');
+    }
+    return style;
+};
 </script>
 
-{#each [...Array($length).keys()] as l}
+{#each [...Array($maze.length).keys()] as l}
     <p>
-        {#each [...Array($width).keys()] as w}
+        {#each [...Array($maze.width).keys()] as w}
             {#if $x === w && $y === l}
-                <span>🐭</span>
-            {:else if $start.x === w && $start.y === l}
-                <span>🟪</span>
-            {:else if $end.x === w && $end.y === l}
-                <span>🟩</span>
+                <span style={getWallBorderStyle(w, l)}>🐭</span>
+            {:else if $maze.start.x === w && $maze.start.y === l}
+                <span style={getWallBorderStyle(w, l)}>🟪</span>
+            {:else if $maze.end.x === w && $maze.end.y === l}
+                <span style={getWallBorderStyle(w, l)}>🟩</span>
             {:else}
-                <span>🟨</span>
+                <span style={getWallBorderStyle(w, l)}>🟨</span>
             {/if}
         {/each}
     </p>
@@ -32,5 +55,9 @@ $: mouseDetails = JSON.stringify({x: $x, y: $y});
         font-family: monospace;
         background-color: beige;
         color: coral;
+    }
+
+    span {
+        border: 1px solid transparent;
     }
 </style>
