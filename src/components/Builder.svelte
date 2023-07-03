@@ -4,27 +4,33 @@
 	import { EgocentricMovementController } from '../parts/egocentric-movement-controller';
 	import { TouchSensor } from '../parts/touch-sensor';
 
-    let partsList = [
-        { id: 0, name: 'Choose Part' },
-		{ id: 1, name: AllocentricMovementController.name },
-		{ id: 2, name: EgocentricMovementController.name },
-		{ id: 3, name: TouchSensor.name }
-	];
-	let selected;
+    const partsList = [{name: 'Choose Part'}, AllocentricMovementController, EgocentricMovementController, TouchSensor];
+	let selectedPart;
+	let selectedLocation;
+	$: locationsList = selectedPart?.locations ?? [];
 
 	function handleSubmit() {
-        addPart(selected.name);
+        addPart(selectedPart.name, selectedLocation);
 	}
 </script>
 <h1>Builder Tool</h1>
 <p>{JSON.stringify($parts)}</p>
 <form on:submit|preventDefault={handleSubmit}>
-	<select bind:value={selected}>
+	<select bind:value={selectedPart} on:change={() => (selectedLocation = selectedPart.locations?.[0])}>
 		{#each partsList as part}
 			<option value={part}>
 				{part.name}
 			</option>
 		{/each}
 	</select>
-	<button disabled={!selected || selected.id === 0} type="submit">Add Part</button>
+	{#if locationsList.length > 0}
+		<select bind:value={selectedLocation}>
+			{#each locationsList as location}
+				<option value={location}>
+					{location}
+				</option>
+			{/each}
+		</select>
+	{/if}
+	<button disabled={!selectedPart || selectedPart === partsList[0]} type="submit">Add Part</button>
 </form>

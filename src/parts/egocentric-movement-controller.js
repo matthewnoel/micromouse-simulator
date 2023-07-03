@@ -15,5 +15,6 @@ export const rotateCounterClockwise = () => {
 
 export const EgocentricMovementController = {
     name: 'Egocentric Movement Controller',
-    methods: {}
+    methods: {},
+    locations: ['center']
 };

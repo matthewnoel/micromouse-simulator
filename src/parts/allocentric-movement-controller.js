@@ -1,24 +1,34 @@
-import { x, y } from '../mouse';
+import { x, y, trySetPosition } from '../mouse';
 
-const moveUp = () => {
-    y.update(n => n - 1);
+let currentX;
+let currentY;
+x.subscribe((value) => {
+    currentX = value;
+});
+y.subscribe((value) => {
+    currentY = value;
+});
+
+const moveUp = (maze) => {
+    trySetPosition(currentX, currentY, currentX, currentY - 1, maze);
 }
-const moveRight = () => {
-    x.update(n => n + 1);
+const moveRight = (maze) => {
+    trySetPosition(currentX, currentY, currentX + 1, currentY, maze);
 }
-const moveDown = () => {
-    y.update(n => n + 1);
+const moveDown = (maze) => {
+    trySetPosition(currentX, currentY, currentX, currentY + 1, maze);
 }
-const moveLeft = () => {
-    x.update(n => n - 1);
+const moveLeft = (maze) => {
+    trySetPosition(currentX, currentY, currentX - 1, currentY, maze);
 }
 
 export const AllocentricMovementController = {
     name: 'Allocentric Movement Controller',
     methods: {
-        moveUp: () => moveUp(),
-        moveRight: () => moveRight(),
-        moveDown: () => moveDown(),
-        moveLeft: () => moveLeft()
-    }
+        moveUp,
+        moveRight,
+        moveDown,
+        moveLeft
+    },
+    locations: ['center']
 };
