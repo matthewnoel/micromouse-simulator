@@ -4,27 +4,26 @@ import { AllocentricMovementController } from './parts/allocentric-movement-cont
 export const runMaze = (program, maze, parts) => {
     const equippedParts = Object.values(parts);
     setPosition(maze.start.x, maze.start.y);
-    for (const char of program) {
-        console.log(char);
-        switch (char) {
-            case '^':
+    for (const line of program) {
+        switch (line.value) {
+            case 'Allocentric Movement Controller -> moveUp':
                 if (!equippedParts.includes(AllocentricMovementController.name)) break;
-                AllocentricMovementController.methods.moveUp(maze);
+                AllocentricMovementController.methods.moveUp.func(maze);
                 break;
-            case '>':
+            case 'Allocentric Movement Controller -> moveRight':
                 if (!equippedParts.includes(AllocentricMovementController.name)) break;
-                AllocentricMovementController.methods.moveRight(maze);
+                AllocentricMovementController.methods.moveRight.func(maze);
                 break;
-            case 'v':
+            case 'Allocentric Movement Controller -> moveDown':
                 if (!equippedParts.includes(AllocentricMovementController.name)) break;
-                AllocentricMovementController.methods.moveDown(maze);
+                AllocentricMovementController.methods.moveDown.func(maze);
                 break;
-            case '<':
+            case 'Allocentric Movement Controller -> moveLeft':
                 if (!equippedParts.includes(AllocentricMovementController.name)) break;
-                AllocentricMovementController.methods.moveLeft(maze);
+                AllocentricMovementController.methods.moveLeft.func(maze);
                 break;
             default:
                 break;
         }
-    }    
+    }
 };

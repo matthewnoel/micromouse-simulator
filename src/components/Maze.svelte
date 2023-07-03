@@ -2,9 +2,6 @@
 import { maze, doesSideMatchWall } from '../maze';
 import { x, y } from '../mouse';
 
-$: mazeDetails = JSON.stringify({length: $maze.length, width: $maze.width, start: $maze.start, end: $maze.end, walls: $maze.walls});
-$: mouseDetails = JSON.stringify({x: $x, y: $y});
-
 const getWallBorderStyle = (x, y) => {
     let style = '';
     const keys = [];
@@ -45,9 +42,6 @@ const getWallBorderStyle = (x, y) => {
     </p>
     <br>
 {/each}
-<p>Maze: {mazeDetails}</p>
-<br>
-<p>Mouse: {mouseDetails}</p>
 
 <style>
     p {
