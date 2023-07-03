@@ -13,7 +13,7 @@
         addPart(selectedPart.name, selectedLocation);
 	}
 </script>
-<h1>Builder Tool</h1>
+
 <p>{JSON.stringify($parts)}</p>
 <form on:submit|preventDefault={handleSubmit}>
 	<select bind:value={selectedPart} on:change={() => (selectedLocation = selectedPart.locations?.[0])}>

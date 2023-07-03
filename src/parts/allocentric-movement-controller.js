@@ -25,10 +25,22 @@ const moveLeft = (maze) => {
 export const AllocentricMovementController = {
     name: 'Allocentric Movement Controller',
     methods: {
-        moveUp,
-        moveRight,
-        moveDown,
-        moveLeft
+        moveUp: {
+            func: moveUp,
+            title: 'Move Up'
+        },
+        moveRight: {
+            func: moveRight,
+            title: 'Move Right'
+        },
+        moveDown: {
+            func: moveDown,
+            title: 'Move Down'
+        },
+        moveLeft: {
+            func: moveLeft,
+            title: 'Move Left'
+        }
     },
     locations: ['center']
 };

@@ -1,9 +1,18 @@
 <script>
-    import Maze from "./components/Maze.svelte";
     import Editor from "./components/Editor.svelte";
-    import Builder from "./components/Builder.svelte";
+    import TabbedContainer from "./components/TabbedContainer.svelte";
 </script>
 
-<Maze />
-<Editor />
-<Builder />
+<div>
+    <Editor />
+    <TabbedContainer />
+</div>
+
+<style>
+    div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+</style>
