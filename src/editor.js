@@ -1,21 +1,27 @@
-import { moveUp, moveRight, moveDown, moveLeft, setPosition } from './mouse';
+import { setPosition } from './mouse';
+import { AllocentricMovementController } from './parts/allocentric-movement-controller'
 
-export const runMaze = (program, start) => {
+export const runMaze = (program, start, parts) => {
+    const equippedParts = Object.values(parts);
     setPosition(start.x, start.y);
     for (const char of program) {
         console.log(char);
         switch (char) {
             case '^':
-                moveUp();
+                if (!equippedParts.includes(AllocentricMovementController.name)) break;
+                AllocentricMovementController.methods.moveUp();
                 break;
             case '>':
-                moveRight();
+                if (!equippedParts.includes(AllocentricMovementController.name)) break;
+                AllocentricMovementController.methods.moveRight();
                 break;
             case 'v':
-                moveDown();
+                if (!equippedParts.includes(AllocentricMovementController.name)) break;
+                AllocentricMovementController.methods.moveDown();
                 break;
             case '<':
-                moveLeft();
+                if (!equippedParts.includes(AllocentricMovementController.name)) break;
+                AllocentricMovementController.methods.moveLeft();
                 break;
             default:
                 break;
